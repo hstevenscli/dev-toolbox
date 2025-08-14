@@ -1,0 +1,17 @@
+# nixpacks.toml
+
+[phases.setup]
+nixPkgs = [
+    'nodejs_20',
+    'npm',
+    'go',
+]
+
+
+[phases.build]
+cmds = [
+    "./build.sh"
+]
+
+[start]
+cmd = "cd server && ./app"
