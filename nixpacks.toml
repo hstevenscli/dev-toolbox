@@ -20,4 +20,4 @@ cmds = [
 ]
 
 [start]
-cmd = "./server/app"
+cmd = "cd cmd && ./app"
