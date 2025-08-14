@@ -1,4 +1,10 @@
 # nixpacks.toml
+[phases.install]
+cmds = [
+    "cd server && go mod tidy",
+    "cd client && npm install",
+    "cd tools/markdown-renderer/ && npm install",
+]
 
 [phases.setup]
 nixPkgs = [
@@ -14,4 +20,4 @@ cmds = [
 ]
 
 [start]
-cmd = "cd server && ./app"
+cmd = "./server/app"
