@@ -4,7 +4,6 @@ providers = ['...', 'go']
 nixPkgs = [
     '...',
     'nodejs_20',
-    'npm',
     'go',
 ]
 
