@@ -9,4 +9,4 @@ for dir in tools/*; do
 done
 
 # build go server
-cd server/ && go build -o ../app;
+go build -o ./app;

@@ -19,7 +19,7 @@ func main() {
 	router := gin.Default()
 	
 	// Static for main landing pagee
-	router.Static("/assets", "../client/dist/assets/")
+	router.Static("/assets", "./client/dist/assets/")
 
 	//====== GET ROUTES ========
 	router.GET("/", getLandingPage)
