@@ -3,12 +3,18 @@ package main
 import (
 	// "fmt"
 
+	"os"
 	"github.com/gin-gonic/gin"
 )
 
 
 // ???? organize routes by GET,POST,PUT,DELETE or put all routes for a specific tool together?????
 func main() {
+
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
 
 	router := gin.Default()
 	
@@ -32,5 +38,5 @@ func main() {
 
 
 	//====== DELETE ROUTES ========
-	router.Run()
+    router.Run("0.0.0.0:"+port)
 }
