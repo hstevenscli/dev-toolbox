@@ -1,3 +1,4 @@
+providers = ['...', 'go']
 # nixpacks.toml
 [phases.setup]
 nixPkgs = [
