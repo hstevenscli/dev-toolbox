@@ -61,22 +61,52 @@ Im trying to automate all of this but as of now some links need to be manually m
 
 1. Each tool needs to have a package.json or similar file in its directory
 
-2. A link also needs to be included in ./client/src/App.svelte
+2. Make sure that assets are served at /tools/toolname/assets/assetname
+
+You can do this manually or by changing your vite.config.js to have the following line:
+> base: "/tools/tool-name/"
+
+Example with markdown renderer
+```javascript
+import { defineConfig } from 'vite'
+import { svelte } from '@sveltejs/vite-plugin-svelte'
+
+// https://vite.dev/config/
+export default defineConfig({
+    plugins: [svelte()],
+    base: "/tools/markdown-renderer/" // added this line to the default config file
+})
+
+```
+
+3. A link also needs to be included in ./client/src/App.svelte
 
 Example:
 ```html
     <a href="/cooltool">Cool Tool</a>
 ```
-3. A matching handler function will need to be included in the main.go file to serve that route as well
+4. The paths should be handled automatically in the go code, however you can manually set the path as a redundancy.
+
+Include the directory name of your tool in the array in initLinks in handlers.go
 
 Example:
 
 ```go
-	router.GET("/cooltool", getCoolToolPage)
+    // Calls getLinksLocal to get the names of all the tools in tools/
+    func initLinks() []string {
+        var links []string
+        if l, err := getLinksLocal(); err != nil {
+            links = []string{ "markdown-renderer", "json-formatter" } // <<<<<<< add the directory name here
+        } else {
+            links = l
+        }
+        return links
+    }
 ```
 
-This should ensure that the tool gets built and included as part of the larger project on deployment
+You could also make a router.GET and handler func, but so long as you have dist/index.html in your tool directory it should be found and served automatically
 
+If your project uses routes other than GET you will need to set those up manually for now
 
 ## DB
 
