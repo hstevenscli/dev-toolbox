@@ -22,6 +22,7 @@ func main() {
 	router.Static("/assets", "./client/dist/assets/")
 
 	//////// GET ROUTES ////////////// GET ROUTES ////////////// GET ROUTES ////////////// GET ROUTES ////////////// GET ROUTES ////////
+	router.GET("/db/pastebin", getAllPastebin)
 
 	router.GET("/", getLandingPage)
 

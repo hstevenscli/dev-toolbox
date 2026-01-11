@@ -56,6 +56,15 @@ func getAssets(c *gin.Context) {
 	c.File("./tools/" + toolname + "/dist/assets/" + assetname)
 }
 
+func getAllPastebin(c *gin.Context) {
+	entries := []string{
+		"Some text",
+		"some more text",
+		"alot more text",
+	}
+	c.JSON(200, entries)
+}
+
 func getLinks(c *gin.Context) {
 	dirnames := []string{}
 	dirs, err := os.ReadDir("./tools/")
